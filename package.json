@@ -1,0 +1,15 @@
+{
+  "name": "vue3-breaking-changes-scanner",
+  "version": "1.0.0",
+  "description": "CLI tool to scan Vue 2.7 codebase for Vue 3 breaking changes",
+  "main": "vue3-breaking-changes-scanner.js",
+  "bin": {
+    "vue3-breaking-changes-scanner": "./vue3-breaking-changes-scanner.js",
+    "vbcs": "vue3-breaking-changes-scanner.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.3.0",
+    "glob": "^7.2.0"
+  }
+}

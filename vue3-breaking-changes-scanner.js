@@ -303,15 +303,26 @@ function formatFilePath(filePath, rootDir) {
 // CLI setup
 program
     .version('1.0.0')
-    .description('Scan Vue 2.7 codebase for Vue 3 breaking changes');
-
-program
-    .requiredOption('-f, --folder <path>', 'Path to Vue 2.7 project')
+    .description('Scan Vue 2.7 codebase for Vue 3 breaking changes')
+    .option('-a, --analyze', 'Analyze a specific Vue SFC for migration changes')
+    .option('-f, --folder <path>', 'Path to Vue 2.7 project')
     .option('-d, --details', 'Show detailed report with file paths')
     .option('-w, --whitelist <folders>', 'Comma-separated list of sub-folders to scan')
     .option('-m, --modules', 'Show breakdown by modules')
-    .option('-c, --complexity', 'Show complexity score for each file')
+    .option('-f, --file <path>', 'Vue SFC file to analyze')
     .action(async (options) => {
+        if (options.analyze) {
+            // Use dynamic import to avoid circular dependency issues
+            const { analyzeFile } = await import('./analyze.js');
+            await analyzeFile(options.file);
+            return;
+        }
+
+        if (!options.folder) {
+            console.error(chalk.red('Error: --folder option is required'));
+            process.exit(1);
+        }
+
         console.log(chalk.blue('Scanning for Vue 3 breaking changes...'));
         console.log(chalk.blue('Target folder:', options.folder));
         console.log();

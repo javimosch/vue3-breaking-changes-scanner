@@ -47,6 +47,32 @@ The scanner analyzes the directory structure and identifies modules based on the
 
 This logic helps in organizing the migration process and prioritizing modules that require more attention during the migration from Vue 2.7 to Vue 3.
 
+## Groq-Powered AI Analysis
+
+This CLI tool includes a Groq-powered AI analysis feature that helps identify migration changes for Vue Single File Components (SFC).
+
+### Usage
+
+To analyze a specific Vue SFC, use the following command:
+
+```bash
+npx vbcs --analyze --file ./path/to/your/component.vue
+```
+
+### Required Environment Variable
+
+Before using the analysis feature, ensure that the `GROQ_API_KEY` environment variable is set. You can set it in your terminal as follows:
+
+```bash
+export GROQ_API_KEY='your-api-key-here'
+```
+
+This key is necessary for authenticating requests to the Groq AI service.
+
+### Example
+
+After setting the environment variable, you can run the analysis command to get insights on migration changes for your Vue component.
+
 ## Contributing
 
 Feel free to submit issues or pull requests to improve the tools and documentation!
